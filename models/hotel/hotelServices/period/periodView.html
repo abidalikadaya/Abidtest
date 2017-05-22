@@ -1,0 +1,55 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home" >Home</a></li>
+			<li><a sref="hotel"> Hotel</a></li>
+			<li class="active"><a sref="hotelPeriod"> Period</a></li>
+		</ol>
+		<div class="container-fluid">
+			
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<form name="createPeriod" class="form-horizontal row-border" ng-submit="save()">
+								<div class="panel-heading">
+				                    <h2>Hotel Period</h2>
+				              	</div>
+								<div class="panel-body" style="display: block;">
+									
+										<div class="form-group" ng-class="{'has-error': !createPeriod.project.$valid, 'has-success' : createPeriod.project.$valid}">
+											<label class="col-sm-2 control-label">Select Project</label>
+											<div class="col-sm-3">
+												<select class="form-control" name="project" ng-model="periodData.projectId"
+												ng-options="project.id as project.name for project in getProject" required>
+												<option value="">--select--</option>
+												</select>
+											</div>
+											<div class="col-sm-2" ng-if="!createPeriod.project.$valid">
+												<p class="help-block">Please select project !!</p>
+											</div>
+										</div>
+										<div class="form-group" ng-class="{'has-error': !createPeriod.period.$valid, 'has-success' : createPeriod.period.$valid}">
+											<label class="col-sm-2 control-label">Select Period</label>
+											<div class="col-sm-3">
+												<select class="form-control" name="period" ng-options="year for year in periodYears" ng-model="periodData.periodYear" required>
+													<option value="">--select--</option>
+												</select>
+											</div>
+											<div class="col-sm-2" ng-if="!createPeriod.period.$valid">
+												<p class="help-block">Please select Period !!</p>
+											</div>
+										</div>
+								</div>
+								<div class="panel-footer">
+							        <button class="btn btn-primary" ng-disabled="createPeriod.$invalid">Save</button>
+							        <button class="btn btn-warning" ng-click="clear()">Clear</button>
+							    </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>	

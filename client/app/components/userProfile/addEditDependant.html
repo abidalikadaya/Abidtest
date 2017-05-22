@@ -1,0 +1,107 @@
+    <section class="content">
+    <div class="row">
+          <div class="col-md-12">
+    <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add Dependant Details</h3>
+          <button type="button" class="close" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
+      </div>
+       <div class="box-body">
+              <form class="form-horizontal">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="Name" class="col-md-4 control-label text-left">Name [English]</label>
+                    <div class="col-md-6">
+                  <input type="text" class="form-control" id="Name" placeholder="Enter Name" 
+                    ng-model="depentantDetails.name">
+                    </div>
+                  </div>
+                 
+                  <div class="form-group">
+                    <label for="Relation" class="col-md-4 control-label text-left">Relation</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="Relation" placeholder="Enter Relation"
+                      ng-model="depentantDetails.relation">
+                    </div>
+                  </div>
+                 <div class="form-group">
+                    <label for="Saudi/Expat" class="col-md-4 control-label text-left">Saudi/Expat</label>
+                    <div class="col-md-6">
+                      <select class="form-control" id="Saudi/Expat" placeholder="select Saudi/Expat" 
+                      ng-model="depentantDetails.saudiOrExpat">
+                        <option value="">-- choose one --</option>
+                        <option value="Saudi">Saudi</option>
+                        <option value="Expat">Expat</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="Saudi ID" class="col-md-4 control-label text-left">Saudi ID</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="Saudi ID" placeholder="Enter Saudi ID"
+                       ng-model="depentantDetails.saudiID" >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  <label for="birthdate" class="col-md-4 control-label text-left">Birth Date</label>
+                   <div class="col-md-6">
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="date" class="form-control" id="datepicker" placeholder="Enter Birth Date" 
+                    ng-model="depentantDetails.birthDate">
+                  </div>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                </div>   
+                <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="Nationality" class="col-md-3 control-label text-left">Nationality</label>
+                    <div class="col-md-6">
+                    <select class="form-control" id="Nationality" ng-model="depentantDetails.nationality" 
+                          ng-options="nation for nation in nationalities">
+                      <option value="">-- choose Nationality --</option>
+                    </select>
+                      
+                     </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="Gender" class="col-md-3 control-label text-left">Gender</label>
+                    <div class="col-md-6">
+                      <select class="form-control" id="Gender" placeholder="select Gender"
+                      ng-model="depentantDetails.gender" >
+                         <option value="">-- choose Gender --</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="Iqama ID" class="col-md-3 control-label text-left">Iqama ID</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="Iqama ID" placeholder="Enter Iqama ID"
+                      ng-model="depentantDetails.iqamaID" >
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="Mobile Number" class="col-md-3 control-label text-left">Mobile</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="Mobile Number" placeholder="Enter Mobile Number" ng-model="depentantDetails.mobileNumber" >
+                    </div>
+                  </div>
+                </div> 
+              </form>
+            </div> 
+
+      <div class="box-footer pull-right">
+          <button class="btn btn-success" ng-click="saveDepedent(depentantDetails);">Save</button>
+          <button class="btn btn-warning" ng-click="$close()">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+    </section>

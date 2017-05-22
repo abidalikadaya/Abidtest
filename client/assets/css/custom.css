@@ -1,0 +1,242 @@
+a{
+    cursor: pointer;
+}
+.user-header{
+    height: auto !important;
+}
+.grid {
+  height: 200px;
+  text-align: center;
+}
+.user-panel>.info {
+    padding: 15px 5px 5px 15px;
+}
+
+.angucomplete-holder {
+    position: relative;
+}
+/*.content{
+    display: flex;
+}*/
+
+.angucomplete-dropdown {
+    border-color: #ececec;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    width: 250px;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    margin-top: -6px;
+    background-color: #ffffff;
+}
+
+.angucomplete-searching {
+    color: #acacac;
+    font-size: 14px;
+}
+
+.angucomplete-description {
+    font-size: 14px;
+}
+
+.angucomplete-row {
+    padding: 5px;
+    color: #000000;
+    margin-bottom: 4px;
+    clear: both;
+}
+
+.angucomplete-selected-row {
+    background-color: lightblue;
+    color: #ffffff;
+}
+
+.angucomplete-image-holder {
+    padding-top: 2px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.angucomplete-image {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    border-color: #ececec;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.angucomplete-image-default {
+    background-position: center;
+    background-size: contain;
+    height: 34px;
+    width: 34px;
+}
+.margin-top-10{
+    margin-top: 10px; 
+}
+.app-launcher .ion{
+    font-size: 32px;
+}
+.app-launcher .top-space{
+    margin-top: 15px;
+}
+@media (min-width: 768px){
+    .search-top form{
+        margin: 6px !important;
+        display: block !important;
+    }
+}
+
+.skin {
+    float:left;
+    width: 16.66%;
+    padding: 15px;
+}
+.skin .a {
+    display: block;
+    box-shadow: 0 0 3px rgba(0,0,0,0.4);
+}
+.skin .headerLeft {
+    display:block;
+    width: 20%;
+    float: left;
+    height: 20px;
+}
+.skin .headerRight {
+    display:block;
+    width: 80%;
+    float: left;
+    height: 20px;
+}
+.skin .nav {
+    display:block;
+    width: 20%;
+    float: left;
+    height: 80px; 
+}
+.skin .body {
+    display:block;
+    width: 80%;
+    float: left;
+    height: 80px;
+}
+.form-group .required .control-label:after {
+  content:"*";color:red;
+}
+
+#topnav .navbar-brand{
+    background: none !important;
+    padding: 0px !important;
+}
+
+#topnav .logo-area .toolbar-trigger a {
+    margin-right: 0px;
+}
+
+.animated-content .info-tile, .animated-content .panel, .animated-content .widget-weather, .animated-content .widget-tasks, .animated-content .alert:not(.ui-pnotify-container) {
+    visibility: visible;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.modal-dialog {
+   margin: 65px auto !important;
+}
+
+#overlay-screen {
+    background: rgba(0, 0, 0, 0.60) url("/assets/img/bars.svg") no-repeat center center;
+    background-size: 60px;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99999;
+}
+
+.projectGrid {
+  height: 470px;
+}
+
+/*Multibar Graph */
+.vertical-multibar-graph .axis path,
+.vertical-multibar-graph .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.vertical-multibar-graph .bar {
+  fill: steelblue;
+}
+
+.vertical-multibar-graph .x.axis path {
+  display: none;
+}
+
+/* D3 tooltip */
+.d3-tip {
+  line-height: 1;
+  padding: 7px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 2px;
+  z-index:5001;
+  font-size: 12px;
+  line-height: 1.3;
+  top: 0;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+.d3-tip .tooltiptext{
+	text-align: center;
+}
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+div.tooltip {	
+    position: absolute;	
+    pointer-events: none;
+	line-height: 1;
+	padding: 7px 12px;
+	background: rgba(0, 0, 0, 0.9);
+	color: #fff;
+	border-radius: 2px;
+	z-index:5001;
+	font-size: 12px;
+	text-align: center;
+	line-height: 1.3;
+	top: 0;
+}
+.tooltip-content-color{
+	color:#0087D6;
+}
+.statusSpan{
+    margin-right: 25px;
+}
+.statusLabel{
+  margin-right: 10px;
+}    

@@ -1,0 +1,136 @@
+<div class="col-lg-9"  style="overflow:hidden;">
+  <img src="assets/uploads/banner/banner.jpg"
+  style="background-color: rgb(235, 60, 0);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 75vw;
+  height: 103vh;
+  margin-left: -2%;
+  margin-top: -1%;
+  margin-bottom: -1%;
+  overflow: hidden;">
+</div>
+
+<!--<div class="col-lg-3" style="margin-top: 15%;">
+  <div class="login-logo">
+    <img src="assets/uploads/companyLogo/companyLogo.jpg" />
+  </div>
+  <form>
+    <div class="form-group has-feedback">
+      <input type="text" class="form-control" placeholder="Email" ng-model="user.username">
+      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+    </div>
+    <div class="form-group has-feedback">
+      <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+      <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+    </div>
+    <div class="row">
+      <div class="col-xs-8">
+        <div class="checkbox icheck">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="submitLogin()">Sign In</button>
+        </div>
+      </div>
+      <div id="info-box-content">
+        <span>
+          <a href="#" ng-click="ResetPwd();">Reset Password</a>         
+        </span>
+      </div>     
+      <div id="ResetPwd-modal" class="modal fade modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reset Password</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">E-mail address</label>
+                      <input type="input" class="form-control" id="inputemail" ng-model="user.resetEmail" placeholder="Enter E-mail address"></input>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" ng-click="ResetPwdButton()"> Reset your Password</button>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </form>
+</div>-->
+
+<!--New Template-->
+<div class="col-lg-3" style="margin-top: 15%;">
+  <a class="login-logo"><img ng-src="assets/uploads/companyLoginLogo/companyLoginLogo.jpg" style="margin: 10px 12%;" /></a>
+	<form ng-submit="submitLogin()" class="form-horizontal" id="validate-form">
+	<div class="panel panel-default">
+    <div class="panel-body">
+			<form>
+				<div class="form-group mb-md">
+					<div class="col-xs-12">
+						<div class="input-group">							
+							<span class="input-group-addon">
+								<i class="ti ti-user"></i>
+							</span>
+							<input type="text" class="form-control" placeholder="Username / Email address" ng-model="user.username" data-parsley-minlength="6" required="">
+						</div>
+					</div>
+				</div>
+				<div class="form-group mb-md">
+					<div class="col-xs-12">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="ti ti-key"></i>
+							</span>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="user.password">
+						</div>
+					</div>
+				</div>
+				<div class="form-group mb-n">
+					<div class="col-xs-12">
+						<a ng-click="ResetPwd();" class="pull-left">Forgot password?</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="panel-footer">
+			<div class="clearfix">
+				<input type="submit" class="btn btn-primary pull-right" ng-click="submitLogin()" value="Login">
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<div id="ResetPwd-modal" class="modal fade modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Reset Password</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">E-mail address</label>
+              <input type="input" class="form-control" id="inputemail" ng-model="user.resetEmail" placeholder="Enter E-mail address"></input>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="ResetPwdButton()"> Reset your Password</button>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,204 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 575px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Procurement services
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
+
+              <p>Waiting action</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ionic"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53</h3>
+
+              <p>Approve/Completed</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-done-all"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>Under Process</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-albums-outline"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Reject/Cancel</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-cancel"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12" ng-if="isNormalUser || isManager">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-files-o"></i></span>
+
+            <div class="info-box-content" style="padding:10px 10px;">
+              <span class="info-box-text text-center">create an MR</span>
+              <span class="info-box-number text-center" style="margin-top:7px;"><button type="button" ng-click="addItem();" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i> create an MR</button></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <div class="col-md-12">
+          <!-- Custom Tabs (Pulled to the right) -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right" id="procurement-tabs">
+              <li ng-if="isNormalUser || isManager"><a aria-controls="tab_1-1" role="tab" data-toggle="tab" data-target="#tab_1-1" ng-click="tabClick()">Closed Requests</a></li>
+              <!--li ng-if="isManager"><a aria-controls="tab_2-2" role="tab" data-toggle="tab" data-target="#tab_2-2">Request by sub-ordinates</a></li-->
+              <li ng-if="isNormalUser || isManager"><a aria-controls="tab_3-3" role="tab" data-toggle="tab" data-target="#tab_3-3" ng-click="tabClick()">Requested by me</a></li>
+              <li ng-if="isManager || isDeptUser"><a aria-controls="tab_4-4" role="tab" data-toggle="tab" data-target="#tab_4-4" ng-click="tabClick()">Pending Approval</a></li>
+              <li ng-if="isNormalUser || isManager" class="active"><a aria-controls="tab_5-5" role="tab" data-toggle="tab" data-target="#tab_5-5" ng-click="tabClick()">My current MR</a></li>
+              <li class="pull-left header"><i class="fa fa-th"></i> Procurement Details</li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane" id="tab_1-1" ng-if="isNormalUser || isManager">
+                <div class="table-responsive">
+                  <div id="grid1" ui-grid="gridProcureClosed" class="grid"></div>
+                </div>
+              </div>
+              <!-- /.tab-pane -->
+              <!--div class="tab-pane" id="tab_2-2" ng-if="isManager">
+              </div-->
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3-3" ng-if="isNormalUser || isManager">
+                <div class="table-responsive">
+                  <div id="grid1" ui-grid="gridProcureRequest" class="grid"></div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab_4-4" ng-if="isManager || isDeptUser">
+                <div class="table-responsive">
+                  <div id="grid1" ui-grid="gridProcurePending" class="grid"></div>
+                </div>
+              </div>
+              <div class="tab-pane active" id="tab_5-5" ng-if="isNormalUser || isManager">
+                <div class="table-responsive">
+                  <div id="grid1" ui-grid="gridProcureAddToCart" class="grid"></div>
+                  <button type="button" class="btn btn-primary margin-top-10" ng-click="raiseRequest()">Submit Request</button>
+                </div>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+        </div>
+
+        <!--div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Procurement Details</h3>
+            </div>
+            <div class="box-body table-responsive no-padding">
+              <div id="grid1" ui-grid="gridProcure" class="grid"></div>
+            </div>
+          </div-->
+        </div>
+      </div>
+
+    
+   </section>
+    
+    <!-- /.content -->
+
+
+    <div id="add-proc-modal" class="modal fade modal-info">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Raise Request</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Item Code</label>
+                  <div angucomplete-alt id="searchCode"
+                    placeholder="Search Item Code"
+                    maxlength="50"
+                    pause="200"
+                    selected-object="selectedItems"
+                    remote-url="api/procurement/search/product/item?itemCode="
+                    remote-url-data-field="data"
+                    title-field="code"
+                    minlength="1"
+                    input-class="form-control form-control-small"
+                    match-class="highlight"></div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Item Description</label>
+                  <textarea class="form-control" id="exampleInputEmail1" ng-model="itemDescription" placeholder="Enter Item description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Amount</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" ng-change="updateTotalCount()" ng-model="itemAmount" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Quantity</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" ng-change="updateTotalCount()" ng-model="itemQuantity" placeholder="Enter Quantity">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Total Amount</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" ng-model="itemTotalAmount" readonly>
+                </div>
+              </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-outline" ng-click="addToCartRequest()">Add to Cart</button>
+              <!-- <button type="button" class="btn btn-outline" ng-click="raiseRequest()">Submit Request</button> -->
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+  </div>
+

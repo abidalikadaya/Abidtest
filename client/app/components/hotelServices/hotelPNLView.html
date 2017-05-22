@@ -1,0 +1,376 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home">Home</a></li>
+			<li><a sref="hotel"> Hotel</a></li>
+			<li class="active"><a sref="hotelPNL"> Create P&L Summary</a></li>
+		</ol>
+		<div class="container-fluid">
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<div class="panel-body" style="display: block;">
+								<form class="form-horizontal row-border">
+									<div class="form-group">
+										<label class="col-sm-1 control-label">Select Project</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="project.projectId as project.name for project in projectListWithYear" ng-change="updatePeriod(selectedProject)"
+															ng-model="selectedProject">
+												<option value="">-- Select project --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Period</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="period for period in projectPeriod" ng-model="selectedPeriod">
+												<option value="">-- Select period --</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<button ng-click="updatePNLData(selectedProject, selectedPeriod)" ng-disabled="!selectedPeriod || !selectedProject" class="btn btn-primary-alt"><i class="ti ti-notepad"></i> Show Fields</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-inverse" ng-if="!PNLBoxShow" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+				Please select above filter to add PNL
+				<button type="button" class="close" data-dismiss="alert">×</button>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable" ng-if="PNLBoxShow">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<form name="hotel_PNL" ng-submit="saveView()">
+								<div class="panel-heading">
+									<h2>Hotel PNL</h2>
+									<div class="panel-ctrls">
+										<div class="DTTT btn-group pull-left mt-sm">
+											<button class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0" type="submit" ng-disabled=""
+															ng-if="hotelRoles.isOperator"><i class="ti ti-plus"></i> <span>Save</span></button>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_1" ng-click="editView()" ><i class="ti ti-pencil"></i> <span>Edit</span></a>											
+										</div>
+									</div>									
+								</div>
+								<div class="panel-body" style="display: block;">
+									<div class="table-responsive table-bordered">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th style="padding-right:10px; width:200px;" rowspan="2">PNL Data Entry (by Months)</th>													
+													<th class="text-center" ng-repeat="(key,val) in months" colspan="4">{{val}}</th>
+												</tr>
+												<tr>	
+													<th ng-repeat="(key1,val1) in subHeaders track by $index"> {{val1}} </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="PNL in PNLData">
+													<td align="left"><i>{{PNL.fieldName}}</i></td>
+
+													<!--For Jan-->
+													<td ng-if="PNLViewText">{{PNL.jan_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.jan_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.jan_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.jan_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.jan_actual"
+																		input-name="PNL.jan_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,2)" input-value="PNL.jan_actualPer"
+																		input-name="PNL.jan_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,3)" input-value="PNL.jan_budget"
+																		input-name="PNL.jan_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,4)" input-value="PNL.jan_budgetPer"
+																		input-name="PNL.jan_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Feb-->
+													<td ng-if="PNLViewText">{{PNL.feb_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.feb_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_actual"
+																		input-name="PNL.feb_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_actualPer"
+																		input-name="PNL.feb_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_budget"
+																		input-name="PNL.feb_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_budgetPer"
+																		input-name="PNL.feb_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Mar-->
+													<td ng-if="PNLViewText">{{PNL.mar_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.mar_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.mar_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.mar_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.mar_actual"
+																		input-name="PNL.mar_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.mar_actualPer"
+																		input-name="PNL.mar_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.mar_budget"
+																		input-name="PNL.mar_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.mar_budgetPer"
+																		input-name="PNL.mar_budgetPer" input-required="true" />
+													</td>
+																									
+													<!--For Apr-->
+													<td ng-if="PNLViewText">{{PNL.apr_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.apr_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.apr_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.apr_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.apr_actual"
+																		input-name="PNL.apr_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.apr_actualPer"
+																		input-name="PNL.apr_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.apr_budget"
+																		input-name="PNL.apr_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.apr_budgetPer"
+																		input-name="PNL.apr_budgetPer" input-required="true" />
+													</td>
+
+													<!--For May-->
+													<td ng-if="PNLViewText">{{PNL.may_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.may_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.may_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.may_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.may_actual"
+																		input-name="PNL.may_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.may_actualPer"
+																		input-name="PNL.may_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.may_budget"
+																		input-name="PNL.may_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.may_budgetPer"
+																		input-name="PNL.may_budgetPer" input-required="true" />
+													</td>
+
+													<!--For jun-->
+													<td ng-if="PNLViewText">{{PNL.jun_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.jun_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.jun_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.jun_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.jun_actual"
+																		input-name="PNL.jun_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.jun_actualPer"
+																		input-name="PNL.jun_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.jun_budget"
+																		input-name="PNL.jun_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.jun_budgetPer"
+																		input-name="PNL.jun_budgetPer" input-required="true" />
+													</td>
+
+													<!--For jul-->
+													<td ng-if="PNLViewText">{{PNL.jul_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.jul_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.jul_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.jul_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.jul_actual"
+																		input-name="PNL.jul_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.jul_actualPer"
+																		input-name="PNL.jul_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.jul_budget"
+																		input-name="PNL.jul_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.jul_budgetPer"
+																		input-name="PNL.jul_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Aug-->
+													<td ng-if="PNLViewText">{{PNL.aug_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.aug_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.aug_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.aug_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.aug_actual"
+																		input-name="PNL.aug_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.aug_actualPer"
+																		input-name="PNL.aug_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.aug_budget"
+																		input-name="PNL.aug_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.aug_budgetPer"
+																		input-name="PNL.aug_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Sep-->
+													<td ng-if="PNLViewText">{{PNL.feb_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.feb_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_actual"
+																		input-name="PNL.feb_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_actualPer"
+																		input-name="PNL.feb_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_budget"
+																		input-name="PNL.feb_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_budgetPer"
+																		input-name="PNL.feb_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Oct-->
+													<td ng-if="PNLViewText">{{PNL.feb_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.feb_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_actual"
+																		input-name="PNL.feb_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_actualPer"
+																		input-name="PNL.feb_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_budget"
+																		input-name="PNL.feb_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_budgetPer"
+																		input-name="PNL.feb_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Nov-->
+													<td ng-if="PNLViewText">{{PNL.feb_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.feb_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_actual"
+																		input-name="PNL.feb_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_actualPer"
+																		input-name="PNL.feb_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_budget"
+																		input-name="PNL.feb_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_budgetPer"
+																		input-name="PNL.feb_budgetPer" input-required="true" />
+													</td>
+
+													<!--For Dec-->
+													<td ng-if="PNLViewText">{{PNL.feb_actual}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_actualPer}}</td>										
+													<td ng-if="PNLViewText">{{PNL.feb_budget}}</td>
+													<td ng-if="PNLViewText">{{PNL.feb_budgetPer}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_actual"
+																		input-name="PNL.feb_actual" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_actualPer"
+																		input-name="PNL.feb_actualPer" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.feb_budget"
+																		input-name="PNL.feb_budget" input-required="true" />
+													</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="1" input-change="updateTotals($index,1)" input-value="PNL.feb_budgetPer"
+																		input-name="PNL.feb_budgetPer" input-required="true" />
+													</td>
+													
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--comment Box -->
+<div class="modal fade" id="comment-modal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form name="rejectComment" class="form-horizontal" ng-submit="rejectPNLSubmit()">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h2 class="modal-title">Reject Comment</h2>
+				</div>
+				<div class="modal-body">
+					<div class="form-group" ng-class="{'has-error' : !rejectComment.comment.$valid}">
+						<div class="col-sm-12">
+							<textarea name="comment" placeholder="Please enter your comment.."  cols="50" rows="4" class="form-control" ng-model="rejectCommentText" required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button class="btn btn-primary" ng-disabled="rejectComment.$invalid">Save changes</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

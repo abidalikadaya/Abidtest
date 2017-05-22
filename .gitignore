@@ -1,0 +1,6 @@
+node_modules/
+bower_components/
+logs/
+access.log
+npm-debug.log
+client/assets/uploads/**

@@ -1,0 +1,181 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home">Home</a></li>
+			<li><a sref="hotel"> Hotel</a></li>
+			<li class="active"><a sref="hotelPNL"> Create P&L Summary</a></li>
+		</ol>
+		<div class="container-fluid">
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<div class="panel-body" style="display: block;">
+								<form class="form-horizontal row-border">
+									<div class="form-group">
+										<label class="col-sm-1 control-label">Select Project</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="project.projectId as project.name for project in projectListWithYear" ng-change="updatePeriod(selectedProject)"
+															ng-model="selectedProject">
+												<option value="">-- Select project --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Period</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="period for period in projectPeriod" ng-model="selectedPeriod">
+												<option value="">-- Select period --</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<button ng-click="updatePNLData(selectedProject, selectedPeriod)" ng-disabled="!selectedPeriod || !selectedProject" class="btn btn-primary-alt"><i class="ti ti-notepad"></i> Show Fields</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-inverse" ng-if="!PNLBoxShow" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+				Please select above filter to add PNL
+				<button type="button" class="close" data-dismiss="alert">×</button>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable" ng-if="PNLBoxShow">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<form name="hotel_PNL" ng-submit="saveView()">
+								<div class="panel-heading">
+									<h2>Hotel PNL</h2>
+									<div class="panel-ctrls">
+										<div class="DTTT btn-group pull-left mt-sm">
+											<button class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0" type="submit" ng-disabled="lock.lockActions !== 0"
+															ng-if="hotelRoles.isOperator"><i class="ti ti-plus"></i> <span>Save</span></button>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_1" ng-click="editView()" ng-disabled="lock.lockActions !== 0 && hotelRoles.isOperator"><i class="ti ti-pencil"></i> <span>Edit</span></a>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_2" ng-click="submitPNL()" ng-if="hotelRoles.isOperator" ng-disabled="lock.lockActions !== 0"><i class="ti ti-upload"></i> <span>Submit</span></a>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_2" ng-click="approvePNL()" ng-if="hotelRoles.isController"><i class="ti ti-check-box"></i> <span>Approve</span></a>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_2" ng-click="rejectPNL()" ng-if="hotelRoles.isController"><i class="ti ti-close"></i> <span>Reject</span></a>
+										</div>
+									</div>
+									<span class="pull-right statusSpan">
+										<label class="statusLabel">Status</label>
+										<span class="label label-default" ng-if="lock.action === 'Not submitted'">{{lock.action}}</span>
+										<span class="label label-warning" ng-if="lock.action === 'Submitted'">{{lock.action}}</span>
+										<span class="label label-success" ng-if="lock.action === 'Approved'">{{lock.action}}</span>
+										<span class="label label-danger" ng-if="lock.action === 'Rejected'">{{lock.action}}</span>
+										<span class="label label-primary" ng-if="lock.action === 'Unlocked'">{{lock.action}}</span>
+									</span>
+								</div>
+								<div class="panel-body" style="display: block;">
+									<div class="table-responsive table-bordered">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th style="padding-right:10px; width:155px;">PNL Data Entry (by Months)</th>
+													<th ng-repeat="(key,val) in months">{{val}}</th>
+													<th>Total</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="PNL in PNLData">
+													<td align="left"><i>{{PNL.fieldName}}</i></td>
+													<td ng-if="PNLViewText">{{PNL.jan}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,1)" input-value="PNL.jan"
+																		input-name="PNL.jan" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.feb}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,2)" input-value="PNL.feb"
+																		input-name="PNL.feb" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.mar}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,3)" input-value="PNL.mar"
+																		input-name="PNL.mar" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.apr}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,4)" input-value="PNL.apr"
+																		input-name="PNL.apr" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.may}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,5)" input-value="PNL.may"
+																		input-name="PNL.may" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.jun}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,6)" input-value="PNL.jun"
+																		input-name="PNL.jun" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.jul}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,7)" input-value="PNL.jul"
+																		input-name="PNL.jul" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.aug}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,8)" input-value="PNL.aug"
+																		input-name="PNL.aug" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.sep}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,9)" input-value="PNL.sep"
+																		input-name="PNL.sep" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.oct}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,10)" input-value="PNL.oct"
+																		input-name="PNL.oct" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.nov}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,11)" input-value="PNL.nov"
+																		input-name="PNL.nov" input-required="true" />
+													</td>
+													<td ng-if="PNLViewText">{{PNL.dec}}</td>
+													<td ng-if="PNLViewInput">
+														<number-only-input input-disable="PNL.IsEditable == 0" input-change="updateTotals($index,12)" input-value="PNL.dec"
+																		input-name="PNL.dec" input-required="true" />
+													</td>
+													<td>{{PNL.total}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--comment Box -->
+<div class="modal fade" id="comment-modal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form name="rejectComment" class="form-horizontal" ng-submit="rejectPNLSubmit()">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h2 class="modal-title">Reject Comment</h2>
+				</div>
+				<div class="modal-body">
+					<div class="form-group" ng-class="{'has-error' : !rejectComment.comment.$valid}">
+						<div class="col-sm-12">
+							<textarea name="comment" placeholder="Please enter your comment.."  cols="50" rows="4" class="form-control" ng-model="rejectCommentText" required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button class="btn btn-primary" ng-disabled="rejectComment.$invalid">Save changes</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

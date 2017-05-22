@@ -1,0 +1,444 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home" >Home</a></li>
+			<li class="active"><a sref="admin">Admin</a></li>
+		</ol>
+		<!--<div class="page-heading">
+			<h1>Admin</h1>
+		</div>-->
+		<div class="container-fluid">
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="panel panel-default" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+					<div class="panel-heading">
+						<h2>Change login image</h2>
+						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+					</div>
+					<div class="panel-editbox" data-widget-controls=""></div>
+					<form name="upload_form" class="form-horizontal row-border">
+    					<div class="panel-body">						
+        					<div class="form-group">
+            					<label class="col-sm-2 control-label">Select login image</label>
+            					<div class="col-sm-8">
+                					<input type="file" id="LoginLogofile" ngf-select ng-model="uploadBannerFile" name="file" ngf-pattern="'image/*'" accept="image/*"  ngf-resize="{width: 1420, height: 1080}"/>
+                					<p class="help-block">1420 Ã— 1080 pixels : Example block-level help text here.</p>
+            					</div>
+        					</div>										
+    					</div>
+    					<div class="panel-footer">
+    						<div class="row">
+    							<div class="col-sm-8 col-sm-offset-2">
+    								<button type="submit" class="btn-primary btn" ng-click="submitBannerImage()">Submit</button>
+    							</div>
+    						</div>
+    					</div>
+					</form>
+				</div>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="panel panel-default" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+					<div class="panel-heading">
+						<h2>Company Home Logo</h2>
+						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+					</div>
+					<div class="panel-editbox" data-widget-controls=""></div>
+                    <form name="upload_form1" class="form-horizontal row-border">
+					<div class="panel-body">						
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Select Company Logo Image</label>
+								<div class="col-sm-8">
+									<input type="file" id="companyLogoFile" ngf-select ng-model="uploadCompanyFile" name="file" ngf-pattern="'image/*'" accept="image/*" 
+									ngf-resize="{width: 220, height: 100}" />
+									<!-- <input type="file" id="exampleInputFile"> -->
+									<p class="help-block">50 Ã— 50 pixels : Example block-level help text here.</p>
+								</div>
+							</div>									
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+								<button class="btn-primary btn" ng-click="submitCompanyLogoImage()">Submit</button>
+							</div>
+						</div>
+					</div>
+                    </form> 
+				</div>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="panel panel-default" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+					<div class="panel-heading">
+						<h2>Company Login Logo</h2>
+						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+					</div>
+					<div class="panel-editbox" data-widget-controls=""></div>
+                    <form name="upload_form2" class="form-horizontal row-border">
+					<div class="panel-body">						
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Select Company Logo Image</label>
+								<div class="col-sm-8">
+									<input type="file" id="companyLoginLogoFile" ngf-select ng-model="uploadCompanyLoginFile" name="file" ngf-pattern="'image/*'" accept="image/*" 
+									ngf-resize="{width: 220, height: 100}" />
+									<!-- <input type="file" id="exampleInputFile"> -->
+									<p class="help-block">50 Ã— 50 pixels : Example block-level help text here.</p>
+								</div>
+							</div>									
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+								<button class="btn-primary btn" ng-click="submitCompanyLoginLogoImage()">Submit</button>
+							</div>
+						</div>
+					</div>
+                    </form> 
+				</div>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="panel panel-default" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+					<div class="panel-heading">
+						<h2>Mail Server Settings</h2>
+						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+					</div>
+					<div class="panel-editbox" data-widget-controls=""></div>
+					<div class="panel-body">
+						<form action="" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Server Name</label>
+								<div class="col-sm-8">
+									<input type="text" ng-model="emailSetting.serverName" class="form-control" id="txtServerName" placeholder="Enter server name">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Port</label>
+								<div class="col-sm-8">
+									<input type="text" ng-model="emailSetting.port" class="form-control" id="txtPort" placeholder="Enter Port">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">From Email ID (Optinal)</label>
+								<div class="col-sm-8">
+									<input type="text" ng-model="emailSetting.fromEmail" class="form-control" id="txtFromEmailAddress" placeholder="Email Address">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">To Email ID</label>
+								<div class="col-sm-8">
+									<input type="text" ng-model="emailSetting.toEmail" class="form-control" id="txtToEmailAddress" placeholder="Email Address">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Time Out (Seconds)</label>
+								<div class="col-sm-8">
+									<input type="text" ng-model="emailSetting.timeOut" class="form-control" id="txtTimeOut" placeholder="Time Out">
+								</div>
+							</div>
+							<br><br>
+							<h4>Authentication Details (Optional)</h4><br>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Username</label>
+								<div class="col-sm-8">
+									<input type="text" ng-model="emailSetting.userName" class="form-control" id="txtMailServerUserName" placeholder="Enter username">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Password</label>
+								<div class="col-sm-8">
+									<input type="password" ng-model="emailSetting.password" class="form-control" id="txtMailServerPassword" placeholder="Enter password">
+								</div>
+							</div>
+
+							<br><br>
+							<h4>Secure Connection Details (Optinal)</h4><br>
+							<div class="form-group">
+								<div class="col-sm-6">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="emailSetting.sslEnabled"> SSL Enabled</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-2 control-label">SSL Certificate</label>
+								<div class="col-sm-8">
+									<input type="file" name="file" ng-model="emailSetting.sslCertificate"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">SSL Certificate KeyPassword</label>
+								<div class="col-sm-8">
+									<input type="password" ng-model="emailSetting.sslCertificatePwd" class="form-control"placeholder="Password">
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-info pull-right col-sm-pull-2">Test Mail</button>
+							</div>
+
+							<!--<br><br>
+							<h4>Secondary server settings(Optional)</h4><br>
+							<div class="form-group">
+								<div class="col-sm-6">
+									<div class="checkbox">
+										<label><input type="checkbox"> Add Secondary mail server</label>
+									</div>
+								</div>
+							</div>-->
+						</form>				
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+								<button class="btn-primary btn" ng-click="submitEmailSetting();">Submit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- start plugin -->
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+					<div class="panel-heading">
+						<h2>Add plugin</h2>
+						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+					</div>
+					<div class="panel-editbox" data-widget-controls=""></div>
+					<form name="plugin-form" ng-submit="submitAppPlugins()">
+						<div class="panel-body">
+							<div class="form-group">
+								<h4>Enable/Disable Plugins</h4>
+								<div class="col-md-2">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="plugin.procurement"> Procurement</label>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="plugin.itServices"> I.T Services</label>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="plugin.hrServices"> H.R Services</label>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="plugin.reports"> Reports</label>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="plugin.hotelServices"> Hotel services</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<button class="btn-primary btn" type="submit">Submit</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- end plugin -->
+
+			<!-- start chnage sys admin password -->
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+					<div class="panel-heading">
+						<h2>Change SysAdmin Password</h2>
+						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{'target': '.panel-body'}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+					</div>
+					<div class="panel-editbox" data-widget-controls=""></div>
+					<form class="form-horizontal">
+						<div class="panel-body">
+								<div class="row">
+									<div class="form-group">
+										<label for="oldAdminPassword" class="col-md-3 control-label">Old Password</label>
+										<div class="col-md-3">
+											<input type="password" class="form-control" id="oldAdminPassword" placeholder="Old Password">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<label for="newPassword" class="col-md-3 control-label">New Password</label>
+										<div class="col-md-3">
+											<input type="password" class="form-control" id="newPassword" placeholder="New Password">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<label for="confirmNewPassword" class="col-md-3 control-label">Confirm New Password</label>
+										<div class="col-md-3">
+											<input type="password" class="form-control" id="confirmNewPassword" placeholder="Confirm New Password">
+										</div>
+									</div>
+								</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<button class="btn-primary btn" ng-click="">Submit</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!--end chnage sys admin password-->
+
+			<!--user creation-->
+			<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+				<div class="panel-heading">
+					<h2>Create User</h2>
+				</div>
+				<form name="createUsers"  class="form-horizontal" ng-submit="submitCreateUser()">
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane active" id="horizontal-form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-3 control-label">Username</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputEmail3" placeholder="Enter username" ng-model="createUser.username" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">First Name</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputPassword3" placeholder="Enter First Name" ng-model="createUser.firstName" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Last Name</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputPassword3" placeholder="Enter Last Name" ng-model="createUser.lastName" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Middle Name</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputPassword3" placeholder="Enter Middle Name" ng-model="createUser.middleName" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Gender</label>
+										<div class="col-sm-9">
+											<div class="radio">
+												<label>
+													<input type="radio" name="createGender" value="male" ng-model="createUser.gender" required> Male
+												</label> &nbsp;&nbsp;
+												<label>
+													<input type="radio" name="createGender" value="female" ng-model="createUser.gender" required> Female
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Email Address</label>
+										<div class="col-sm-9">
+											<input type="email" class="form-control" id="inputPassword3" placeholder="Enter Email Address" ng-model="createUser.emailAddress" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Mobile Number</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputPassword3" placeholder="Enter Mobile Number" ng-model="createUser.mobileNumber" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Office Number</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputPassword3" placeholder="Enter Office number" ng-model="createUser.officeNumber">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Extention</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="inputPassword3" placeholder="Enter extention" ng-model="createUser.extention">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Manager</label>
+										<div class="col-sm-9">
+											<select class="form-control" ng-options="manager.id as manager.userName for manager in managers" ng-model="createUser.manager" required></select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Is Manager
+										</label>
+										<div class="col-sm-9">
+											<div class="radio">
+												<label>
+													<input type="radio" name="isManager" value="yes" ng-model="createUser.isManager" required> Yes
+												</label> &nbsp;&nbsp;
+												<label>
+													<input type="radio" name="isManager" value="no" ng-model="createUser.isManager" required> No
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Application Admin
+										</label>
+										<div class="col-sm-9">
+											<div class="radio">
+												<label>
+													<input type="radio" name="appAdmin" value="yes" ng-model="createUser.appAdmin" required> Yes
+												</label> &nbsp;&nbsp;
+												<label>
+													<input type="radio" name="appAdmin" value="no" ng-model="createUser.appAdmin" required> No
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Default plugin</label>
+										<div class="col-sm-9">
+											<div class="radio">
+												<label ng-repeat="plugin in defaultPluginsData">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" name="defaultPlugin" ng-value="plugin.id" ng-model="createUser.defaultPlugin" required> {{plugin.pluginName}}
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Enable/Disable plugins</label>
+										<div class="col-sm-9">
+											<div class="col-md-2" ng-repeat="plugin in defaultPluginsData">
+												<div class="checkbox">
+													<label><input type="checkbox" ng-model="createUser.usersPlugins[plugin.id]" ng-checked="createUser.defaultPlugin == plugin.id" ng-disabled="createUser.defaultPlugin == plugin.id"> {{plugin.pluginName}}</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group" ng-repeat="(key,value) in pluginRoles" ng-if="!!createUser.usersPlugins[key] || createUser.defaultPlugin ==  key">
+										<label for="inputPassword3" class="col-sm-3 control-label">{{pluginsMaps[key][0]['pluginName']}} Roles
+										</label>
+										<div class="col-sm-9">
+											<span class="checkbox" ng-repeat="roles in value">
+												<label><input type="checkbox" ng-model="createUser.selectedPluginRoles[pluginsMaps[key][0].id][roles.id]">{{roles.roleName}}</label>
+											</span>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+								<button class="btn-primary btn" type="submit" ng-disabled="createUsers.$invalid">Submit</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!--user creation end-->
+		</div>
+	</div>
+</div>
+

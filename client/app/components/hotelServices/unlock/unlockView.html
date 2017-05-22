@@ -1,0 +1,107 @@
+<div class="static-content">
+    <div class="page-content">
+        <ol class="breadcrumb">
+            <li><a sref="home">Home</a></li>
+            <li><a sref="hotel"> Hotel</a></li>
+            <li class="active"><a sref="hotelPeriod"> Unlock</a></li>
+        </ol>
+        <div class="container-fluid">
+            <div data-widget-group="group1" class="ui-sortable">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+                            <form name="unlockBudget" class="form-horizontal row-border" ng-submit="saveUnlockBudget()" novalidate>
+                                <div class="panel-heading">
+                                    <h2>Unlock Budget</h2>
+                                </div>
+                                <div class="panel-body" style="display: block;">
+                                    <div class="form-group" ng-class="{'has-error': !unlockBudget.unlockProject.$valid, 'has-success' : unlockBudget.unlockProject.$valid}">
+                                        <label class="col-sm-2 control-label">Locked Project</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="unlockProject" ng-options="project.projectId as project.projectName for project in projectListWithYear" ng-change="updatePeriod(selectedProject)" ng-model="selectedProject" required>
+												<option value="">-- Select project --</option>
+											</select>
+                                        </div>
+                                        <div class="col-sm-2" ng-if="!unlockBudget.unlockProject.$valid">
+												<p class="help-block">Please select project !!</p>
+											</div>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': !unlockBudget.unlockPeriod.$valid, 'has-success' : unlockBudget.unlockPeriod.$valid}">
+                                        <label class="col-sm-2 control-label">Select Year</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="unlockPeriod" ng-options="period for period in projectPeriod" ng-model="selectedPeriod" required>
+												<option value="">-- Select year --</option>
+											</select>
+                                        </div>
+                                        <div class="col-sm-2" ng-if="!unlockBudget.unlockPeriod.$valid">
+												<p class="help-block">Please select year !!</p>
+											</div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <input class="btn btn-primary" type="submit" ng-disabled="unlockBudget.$invalid" value="Unlock">
+                                    <input type="button" class="btn btn-warning" ng-click="clearUnclock(true)" value="Clear">
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-widget-group="group1" class="ui-sortable">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+                            <form name="unlockActual" class="form-horizontal row-border" ng-submit="saveUnlockActual()" novalidate>
+                                <div class="panel-heading">
+                                    <h2>Unlock Actual</h2>
+                                </div>
+                                <div class="panel-body" style="display: block;">
+                                    <div class="form-group" ng-class="{'has-error': !unlockActual.actualProject.$valid, 'has-success' : unlockActual.actualProject.$valid}">
+                                        <label class="col-sm-2 control-label">Locked Project</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="actualProject" ng-options="project.projectId as project.projectName for project in ActualListWithYear" ng-change="updateActualPeriod(selectedActualProject)"
+															ng-model="selectedActualProject" required>
+												<option value="">-- Select project --</option>
+											</select>
+                                        </div>
+                                        <div class="col-sm-2" ng-if="!unlockActual.actualProject.$valid">
+												<p class="help-block">Please select project !!</p>
+											</div>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': !unlockActual.actualPeriod.$valid, 'has-success' : unlockActual.actualPeriod.$valid}">
+                                        <label class="col-sm-2 control-label">Select Year</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="actualPeriod" ng-options="year for year in projectActualPeriod" ng-change="updateActualDays(selectedActualProject,actualPeriodYear)" ng-model="actualPeriodYear" required>
+													<option value="">--Select year --</option>
+												</select>
+                                        </div>
+                                        <div class="col-sm-2" ng-if="!unlockActual.actualPeriod.$valid">
+												<p class="help-block">Please select year !!</p>
+											</div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': !unlockActual.actualDay.$valid, 'has-success' : unlockActual.actualDay.$valid}">
+                                        <label class="col-sm-2 control-label">Select Day</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="actualDay" ng-options="day for day in projectActualDays" ng-model="actualDay" required>
+													<option value="">--Select day --</option>
+												</select>
+                                        </div>
+                                        <div class="col-sm-2" ng-if="!unlockActual.actualDay.$valid">
+												<p class="help-block">Please select day !!</p>
+											</div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <input class="btn btn-primary" type="submit" ng-disabled="unlockActual.$invalid" value="Unlock">
+                                    <input type="button" class="btn btn-warning" ng-click="clearUnclock(false)" value="Clear">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

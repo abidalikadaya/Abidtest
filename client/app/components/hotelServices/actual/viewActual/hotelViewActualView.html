@@ -1,0 +1,88 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home">Home</a></li>
+			<li><a sref="hotel"> Hotel</a></li>
+			<li class="active"><a sref="hotelBudget"> View Actual</a></li>
+		</ol>	
+		<div class="container-fluid">
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<div class="panel-body" style="display: block;">
+								<form class="form-horizontal row-border">
+									<div class="form-group">
+										<label class="col-sm-1 control-label">Select Project</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="project.projectId as project.name for project in projectListWithYear" ng-change="updatePeriod(selectedProject)"
+															ng-model="selectedProject">
+												<option value="">-- Select project --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Period</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="period for period in projectPeriod" ng-model="selectedPeriod">
+												<option value="">-- Select period --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Month</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="key as month for (key, month) in months" ng-model="selectedMonth">
+												<option value="">-- Select Month --</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<button ng-click="updateActualData(selectedProject, selectedPeriod, selectedMonth)" ng-disabled="!selectedPeriod || !selectedProject || !selectedMonth" class="btn btn-primary-alt"><i class="ti ti-notepad"></i> Show Fields</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-inverse" ng-if="!actualBoxShow" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+				Please select above filter to View actual data
+				<button type="button" class="close" data-dismiss="alert">×</button>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable" ng-if="actualBoxShow">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<form name="hotel_actual" ng-submit="">
+								<div class="panel-heading">
+									<h2>View Hotel Actual</h2>									
+								</div>
+								<div class="panel-body" style="display: block;">
+									<div class="table-responsive table-bordered">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th style="padding-right:10px; min-width:195px;">Actual Data Entry (by Days)</th>
+													<th ng-repeat="(key,val) in daysInMonthList">{{val}}</th>
+													<!-- <th>Total</th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="actual in actualData">
+													<td align="left"><i>{{actual.fieldName}}</i></td>
+													<td ng-repeat="(key,val) in fullDaysField" ng-bind="actual[val]">{{actual[val]}}</td>
+													<!-- <td>{{budget.total}}</td> -->
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+	

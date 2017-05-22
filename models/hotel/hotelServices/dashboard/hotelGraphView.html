@@ -1,0 +1,152 @@
+<div class="static-content">
+  <div class="page-content">
+    <ol class="breadcrumb">
+      <li><a sref="home">Home</a></li>
+      <li><a sref="hotel"> Hotel</a></li>
+      <li class="active"><a sref="hotelBudget"> Dashboard</a></li>
+    </ol>
+    <div class="container-fluid">
+      <!--<div data-widget-group="group1" class="ui-sortable">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+              <div class="panel-body" style="display: block;">
+                <form class="form-horizontal row-border">
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">Select Project</label>
+                    <div class="col-sm-2">
+                      <select class="form-control" ng-options="project.projectId as project.name for project in projectListWithYear" ng-change="updatePeriod(selectedProject)"
+                        ng-model="selectedProject">
+<option value="">-- Select project --</option>
+</select>
+                    </div>
+                    <label class="col-sm-1 control-label">Select Period</label>
+                    <div class="col-sm-2">
+                      <select class="form-control" ng-options="period for period in projectPeriod" ng-model="selectedPeriod">
+<option value="">-- Select period --</option>
+</select>
+                    </div>
+                    <div class="col-sm-2">
+                      <button ng-click="updateBudgetData(selectedProject, selectedPeriod, selectedMonth)" ng-disabled="!selectedPeriod || !selectedProject"
+                        class="btn btn-primary-alt"><i class="ti ti-notepad"></i> Show Graphs</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+      <!--<div class="alert alert-inverse" ng-if="!budgetBoxShow" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+        Please select above filter to add budget
+        <button type="button" class="close" data-dismiss="alert">×</button>
+      </div>-->
+
+      <!--Revenue Graph-->
+      <div data-widget-group="group1" class="ui-sortable">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default table-responsive" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+              <div class="panel-heading">
+                <h2>Revenue Data</h2>
+                <div class="panel-ctrls" data-actions-container="" data-action-collapse="{'target': '.panel-body'}"></div>
+              </div>
+              <div class="panel-body">
+                <div id="revenue-hotel-chart" class="text-center vertical-multibar-graph"></div>
+              </div>
+              <table class="table table-bordered m-n text-center">
+                <thead>
+                  <tr>
+                    <th class="text-center">Revenue</th>
+                    <th ng-repeat="(key, hotel) in revenueHotelNames" class="text-center">{{hotel}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="(key, hotel) in revenueHotelData[0]">
+                    <td ng-if="key !== 'hotelName'">{{key}}</td>
+                    <td ng-if="key !== 'hotelName'" ng-repeat="data in revenueHotelData">{{data[key]}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--ADR Occupancy Graph-->
+      <div data-widget-group="group1" class="ui-sortable">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default table-responsive" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+              <div class="panel-heading">
+                <h2>ADR Occupancy</h2>
+                <div class="panel-ctrls" data-actions-container="" data-action-collapse="{'target': '.panel-body'}"></div>
+              </div>
+              <div class="panel-body">
+                <div id="adr-occupancy-hotel-chart" class="text-center vertical-multibar-graph"></div>
+              </div>
+              <table class="table table-bordered m-n text-center">
+                <thead>
+                  <tr>
+                    <th class="text-center">ADR Occupancy</th>
+                    <th ng-repeat="(key, hotel) in adrOccupancyHotelNames" class="text-center">{{hotel}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="hotelCat in adrOccupancyHotelData[0]['Categories']">
+                    <td ng-if="key !== 'hotelName'">{{hotelCat.Name}}</td>
+                    <td ng-if="key !== 'hotelName'" ng-repeat="data in adrOccupancyHotelData">
+                      <span ng-repeat="cat in data['Categories']" ng-if="hotelCat.Name == cat.Name">{{cat['Value']}}</span>
+                    </td>
+                  </tr>
+                  <tr ng-repeat="hotelLine in adrOccupancyHotelData[0]['LineCategory']">
+                    <td ng-if="key !== 'hotelName'">{{hotelLine.Name}} in %</td>
+                    <td ng-if="key !== 'hotelName'" ng-repeat="data in adrOccupancyHotelData">
+                      <span ng-repeat="cat in data['LineCategory']" ng-if="hotelLine.Name == cat.Name">{{cat['Value']}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Source of revenue wheel chart-->
+      <div data-widget-group="group1" class="ui-sortable">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default table-responsive" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+              <div class="panel-heading">
+                <h2>Source of revenue</h2>
+                <div class="panel-ctrls" data-actions-container="" data-action-collapse="{'target': '.panel-body'}"></div>
+              </div>
+              <div class="panel-body">
+                <div id="source-revenue-hotel-pie-chart" class="text-center pie-chart"></div>
+              </div>
+              <table class="table table-bordered m-n text-center">
+                <thead>
+                  <tr>
+                    <th class="text-center">Hotel</th>
+                    <th ng-repeat="(key, hotel) in sourceRevenueHotelNames" class="text-center">{{hotel}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="hotelData in sourceRevenueHotelData">
+                    <td>{{hotelData.hotelName}}</td>
+                    <td>{{hotelData.roomRevenue}}</td>
+                    <td>{{hotelData.FBRevenue}}</td>
+                    <td>{{hotelData.otherRevenue}}</td>
+                    <td>{{hotelData.revenue}}</td>
+                    <td>{{hotelData.percentRevenue}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

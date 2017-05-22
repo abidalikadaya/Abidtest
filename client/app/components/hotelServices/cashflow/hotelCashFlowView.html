@@ -1,0 +1,110 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home" >Home</a></li>
+			<li><a sref="hotel"> Hotel</a></li>
+			<li class="active"><a sref="hotelBudget"> Cash Flow</a></li>
+		</ol>
+		<!--<div class="page-heading">
+			<h1>Hotel CashFlow</h1>
+		</div>-->
+		<div class="container-fluid">
+			
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<div class="panel-body" style="display: block;">
+								<form class="form-horizontal row-border">
+									<div class="form-group">
+										<label class="col-sm-1 control-label">Select Project</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="project.projectId as project.name for project in projectListWithYear" ng-change="updatePeriod(selectedProject)" ng-model="selectedProject">
+												<option value="">-- Select project --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Period</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="period for period in projectPeriod" ng-model="selectedPeriod">
+												<option value="">-- Select period --</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<button ng-click="updateCashflowData(selectedProject, selectedPeriod)" ng-disabled="!selectedPeriod || !selectedProject" class="btn btn-primary-alt"><i class="ti ti-notepad"></i> Show Fields</button>
+										</div>
+									</div>
+			                    </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="alert alert-inverse" ng-if="!cashflowBoxShow" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+				Please select above filter to add cashflow
+				<button type="button" class="close" data-dismiss="alert">×</button>
+			</div>
+
+
+			<div data-widget-group="group1" class="ui-sortable" ng-if="cashflowBoxShow">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<div class="panel-heading">
+			                    <h2>Cash Flow</h2>
+								<div class="panel-ctrls">
+									<div class="DTTT btn-group pull-left mt-sm">
+										<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0" ng-click="saveView()"><i class="ti ti-plus"></i> <span>Save</span></a>
+										<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_1" ng-click="editView()"><i class="ti ti-pencil"></i> <span>Edit</span></a>
+									</div>
+								</div>
+			              	</div>
+			              	<div class="panel-body" style="display: block;">
+	              				<div class="table-responsive table-bordered">
+	              					<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th style="padding-right:10px; width:155px;">Description/ Year</th>
+												<th ng-repeat="(key,val) in months">{{val}}</th>
+												<th>Total</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="cashflow in cashflowData">
+												<td align="left"><i>{{cashflow.fieldName}}</i></td>
+												<td ng-if="cashflowViewText">{{cashflow.jan}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,1)" input-value="cashflow.jan" input-name="cashflow.jan" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.feb}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,2)" input-value="cashflow.feb" input-name="cashflow.feb" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.mar}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,3)" input-value="cashflow.mar" input-name="cashflow.mar" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.apr}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,4)" input-value="cashflow.apr" input-name="cashflow.apr" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.may}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,5)" input-value="cashflow.may" input-name="cashflow.may" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.jun}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,6)" input-value="cashflow.jun" input-name="cashflow.jun" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.jul}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,7)" input-value="cashflow.jul" input-name="cashflow.jul" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.aug}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,8)" input-value="cashflow.aug" input-name="cashflow.aug" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.sep}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,9)" input-value="cashflow.sep" input-name="cashflow.sep" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.oct}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,10)" input-value="cashflow.oct" input-name="cashflow.oct" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.nov}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,11)" input-value="cashflow.nov" input-name="cashflow.nov" input-required="true"/></td>
+													<td ng-if="cashflowViewText">{{cashflow.dec}}</td>
+													<td ng-if="cashflowViewInput"><number-only-input input-disable="cashflow.IsEditable == 0" input-change="updateTotals($index,12)" input-value="cashflow.dec" input-name="cashflow.dec" input-required="true"/></td>
+												<td>{{cashflow.total}}</td>
+											</tr>
+										</tbody>
+	              					</table>
+	              				</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>	

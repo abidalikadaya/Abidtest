@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2" ng-if="appPluginSettings.procurement && pluginRoles.procPlugin">
+      <div class="info-tile info-tile-alt tile-warning cursor-pointer" ui-sref="procurement">
+        <div class="tile-icon"><i class="ti ti-desktop"></i></div>
+        <div class="tile-heading"><span>Procurement</span></div>
+        <div class="tile-body"><span>&nbsp;</span></div>
+        <div class="tile-footer"><span class="text-danger">&nbsp;</span></div>
+      </div>
+    </div>
+    <div class="col-md-2" ng-if="appPluginSettings.itServices && pluginRoles.itPlugin">
+      <div class="info-tile info-tile-alt tile-success cursor-pointer" ui-sref="itservices">
+        <div class="tile-icon"><i class="ti ti-settings"></i></div>
+        <div class="tile-heading"><span>I.T Services</span></div>
+        <div class="tile-body"><span>&nbsp;</span></div>
+        <div class="tile-footer"><span class="text-success">&nbsp;</span></div>
+      </div>
+    </div>
+    <div class="col-md-2" ng-if="appPluginSettings.hrServices && pluginRoles.hrPlugin">
+      <div class="info-tile info-tile-alt tile-danger cursor-pointer" ui-sref="hrservices">
+        <div class="tile-icon"><i class="ti ti-user"></i></div>
+        <div class="tile-heading"><span>H.R Services</span></div>
+        <div class="tile-body"><span>&nbsp;</span></div>
+        <div class="tile-footer"><span class="text-success">&nbsp;</span></div>
+      </div>
+    </div>
+    <div class="col-md-2" ng-if="appPluginSettings.reports && pluginRoles.reportPlugin">
+      <div class="info-tile info-tile-alt tile-info cursor-pointer" ui-sref="report">
+        <div class="tile-icon"><i class="ti ti-pie-chart"></i></div>
+        <div class="tile-heading"><span>Reports</span></div>
+        <div class="tile-body"><span>&nbsp;</span></div>
+        <div class="tile-footer"><span class="text-danger">&nbsp;</span></div>
+      </div>
+    </div>
+    <div class="col-md-2" ng-if="appPluginSettings.hotelServices && pluginRoles.hotelPlugin">
+      <div class="info-tile info-tile-alt tile-teal cursor-pointer" ui-sref="hotel">
+        <div class="tile-icon"><i class="ti ti-home"></i></div>
+        <div class="tile-heading"><span>Hotel Services</span></div>
+        <div class="tile-body"><span>&nbsp;</span></div>
+        <div class="tile-footer"><span class="text-danger">&nbsp;</span></div>
+      </div>
+    </div>
+    <div class="col-md-2" >
+      <div class="info-tile info-tile-alt tile-indigo cursor-pointer" ui-sref="admin">
+        <div class="tile-icon"><i class="ti ti-menu-alt"></i></div>
+        <div class="tile-heading"><span>Admin</span></div>
+        <div class="tile-body"><span>&nbsp;</span></div>
+        <div class="tile-footer"><span class="text-danger">&nbsp;</span></div>
+      </div>
+    </div>
+  </div>
+</div>

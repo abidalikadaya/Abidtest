@@ -1,0 +1,37 @@
+ <div class="static-sidebar">
+    <div class="sidebar">
+        <div class="widget stay-on-collapse" id="widget-sidebar">
+          <nav class="widget-body">
+            <ul class="acc-menu">
+              <li class="nav-separator"><span>Features</span></li>
+              <li ui-sref-active="active" ng-if="!!hotelRoles.isAdmin"><a ui-sref="createHotelProject"><i class="fa fa-image"></i> <span>Project</span></a></li>
+              <li ui-sref-active="active" ng-if="!!hotelRoles.isController || !!hotelRoles.isAdmin"><a ui-sref="hotelPeriod"><i class="fa fa-calendar"></i> <span>Period</span></a></li>
+              <!--<li ui-sref-active="active"><a ui-sref="hotelBudget"><i class="fa fa-file-image-o"></i> <span>Budget</span></a></li>-->
+              <li class="hasChild" ng-if="!!hotelRoles.isController || !!hotelRoles.isOperator || !!hotelRoles.isAdmin"><a href="javascript:;"><i class="ti ti-layout"></i><span>Budget</span></a>
+                <ul class="acc-menu">
+                  <li ui-sref-active="active"><a ui-sref="hotelBudget"><i class="fa fa-file-image-o"></i> <span> Create Budget</span></a></li>
+                  <li ui-sref-active="active"><a ui-sref="hotelViewBudget"><i class="fa fa-file-image-o"></i> <span> View Budget</span></a></li>
+                </ul>
+              </li>            
+              <li class="hasChild" ng-if="!!hotelRoles.isController || !!hotelRoles.isOperator || !!hotelRoles.isAdmin"><a href="javascript:;"><i class="ti ti-layout"></i><span>Forecast</span></a>
+                <ul class="acc-menu">
+                  <li ui-sref-active="active"><a ui-sref="hotelForecast"><i class="fa fa-file-image-o"></i> <span> Create Forecast</span></a></li>
+                  <li ui-sref-active="active"><a ui-sref="hotelViewForecast"><i class="fa fa-file-image-o"></i> <span> View Forecast</span></a></li>
+                  <!-- <li ui-sref-active="active"><a ui-sref="hotelHistoryForecast"><i class="fa fa-file-image-o"></i> <span>Forecast History</span></a></li> -->
+                </ul>
+              </li>              
+              <li class="hasChild" ng-if="!!hotelRoles.isController || !!hotelRoles.isOperator || !!hotelRoles.isAdmin"><a href="javascript:;"><i class="ti ti-layout"></i><span>Actual</span></a>
+                <ul class="acc-menu">
+                  <li ui-sref-active="active"><a ui-sref="hotelActual"><i class="fa fa-file-image-o"></i> <span> Create Actual</span></a></li>
+                  <li ui-sref-active="active"><a ui-sref="hotelViewActual"><i class="fa fa-file-image-o"></i> <span> View Actual</span></a></li>                
+                </ul>
+              </li>
+               <li ui-sref-active="active"><a ui-sref="hotelPNL" ng-if="!!hotelRoles.isController || !!hotelRoles.isOperator || !!hotelRoles.isAdmin"><i class="fa fa-envelope-o"></i> <span>P&L Summary</span></a></li>
+              <li ui-sref-active="active"><a ui-sref="hotelCashFlow" ng-if="!!hotelRoles.isController || !!hotelRoles.isOperator || !!hotelRoles.isAdmin"><i class="fa fa-envelope-o"></i> <span>Cashflow</span></a></li>
+              <li ui-sref-active="active"><a ui-sref="hotelDashBoard"  ng-if="!!hotelRoles.isDashboard || !!hotelRoles.isAdmin || !!hotelRoles.isController" ><i class="fa fa-envelope-o"></i> <span>Dashboard</span></a></li>
+              <li ui-sref-active="active" ng-if="!!hotelRoles.isController || !!hotelRoles.isAdmin"><a ui-sref="hotelUnlock"><i class="fa fa-unlock-alt"></i> <span>Unlock</span></a></li>
+            </ul>
+          </nav>
+        </div>
+    </div>
+</div>

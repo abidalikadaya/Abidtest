@@ -1,0 +1,115 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home">Home</a></li>
+			<li class="active"><a sref="admin"> Hotel</a></li>
+		</ol>
+		<!--<div class="page-heading">
+			<h1>Admin</h1>
+		</div>-->
+		<div class="container-fluid">
+			<div data-widget-group="group1">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2>Project</h2>
+								<div class="panel-ctrls">
+									<div class="DTTT btn-group pull-left mt-sm">
+										<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0" ng-click="newProject('md');"><i class="ti ti-plus"></i> <span>New</span></a>
+										<a class="btn btn-default DTTT_button_text disabled" id="ToolTables_crudtable_1" ng-click="editProject('md')"><i class="ti ti-pencil"></i> <span>Edit</span></a>
+										<!--<a class="btn btn-default DTTT_button_text disabled" id="ToolTables_crudtable_2"><i class="ti ti-close"></i> <span>Delete</span></a>-->
+									</div>
+								</div>
+							</div>
+							<div class="panel-body no-padding">
+								<div class="table-responsive">
+                 				 <div id="grid2" ui-grid="projectgrid" ui-grid-selection ui-grid-pagination class="projectGrid"></div>
+                				</div>
+							</div>
+							<div class="panel-footer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="createProjectModal.html">
+	<form class="form-horizontal" name="createProject_form" ng-submit="ok()">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
+	        <h4 class="modal-title">{{action}} Project</h4>
+	    </div>
+	    <div class="modal-body">
+	       
+							<div class="form-group" ng-class="{'has-error':!createProject_form.projectName.$valid}">
+								<label class="col-sm-2 control-label">Name</label>
+								<div class="col-sm-8">
+									<input type="text" name="projectName" ng-model="project.name" class="form-control" id="txtServerName" placeholder="Enter Project Name" required>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!createProject_form.address.$valid}">
+								<label class="col-sm-2 control-label">Address</label>
+								<div class="col-sm-8">
+									<input type="text" name="address" ng-model="project.address" class="form-control" id="txtPort" placeholder="Enter Address" required>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!createProject_form.file.$valid && required}">
+								<label class="col-sm-2 control-label">Logo</label>
+								<div class="col-sm-7" ng-show="action === 'Edit' && !uploadFlag">
+									<img ng-src="{{project.logo}}" style="height:25px">
+								</div>
+								
+								<div class="col-sm-7" ng-show="action === 'Create' || uploadFlag">
+									<input type="file" id="logo" ngf-select ng-model="uploadLogo" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-resize="{width: 220, height: 100}" ng-required="required"/>
+								</div>
+								<div class="col-sm-1" ng-if="action === 'Edit'">
+									<a href="" title="change logo" ng-click="uploadToggle();"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!createProject_form.currency.$valid}">
+								<label class="col-sm-2 control-label">Currency</label>
+								<div class="col-sm-8">
+									<select name="currency" id="currency" class="form-control" ng-model="project.currency" 
+									ng-options="option.id as option.description for option in projectMaster.currency" required>
+									<option value="">--select--</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!createProject_form.operator.$valid}">
+								<label class="col-sm-2 control-label">Operator</label>
+								<div class="col-sm-8">
+									<select name="operator" id="operator" class="form-control" ng-model="project.operator" 
+									ng-options="option.id as option.description for option in projectMaster.operator" required>
+									<option value="">--select--</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!createProject_form.controller.$valid}">
+								<label class="col-sm-2 control-label">Controller</label>
+								<div class="col-sm-8">
+									<select name="controller" id="controller" class="form-control" ng-model="project.controller" 
+									ng-options="option.id as option.description for option in projectMaster.controller" required>
+									<option value="">--select--</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!createProject_form.dashboard.$valid}">
+								<label class="col-sm-2 control-label">Dashboard</label>
+								<div class="col-sm-8">
+									<select name="dashboard" id="dashboard" class="form-control" ng-model="project.dashboard" 
+									ng-options="option.id as option.description for option in projectMaster.dashboard" required>
+									<option value="">--select--</option>
+									</select>
+								</div>
+							</div>
+			
+	    </div>
+	    <div class="modal-footer">
+	        <button class="btn btn-primary" ng-disabled="createProject_form.$invalid">OK</button>
+	        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	    </div>
+	</form>
+		
+	</script>

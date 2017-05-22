@@ -1,0 +1,29 @@
+{
+  "name": "maniaapp",
+  "description": "app is related to music",
+  "main": "app.js",
+  "authors": [
+    "rehmaan ali"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "music"
+  ],
+  "moduleType": [],
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.1",
+    "angular-ui-router": "^0.2.18",
+    "angular": "^1.5.0",
+    "angular-bootstrap": "^1.2.4"
+  }
+}

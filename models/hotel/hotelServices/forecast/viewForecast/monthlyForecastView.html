@@ -1,0 +1,120 @@
+<div class="static-content">
+	<div class="page-content">
+		<ol class="breadcrumb">
+			<li><a sref="home">Home</a></li>
+			<li><a sref="hotel"> Hotel</a></li>
+			<li class="active"><a sref="hotelForecast"> View Forecast</a></li>
+		</ol>
+		<div class="container-fluid">
+			<div data-widget-group="group1" class="ui-sortable">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<div class="panel-body" style="display: block;">
+								<form class="form-horizontal row-border">
+									<div class="form-group">
+										<label class="col-sm-1 control-label">Select Project</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="project.projectId as project.name for project in projectListWithYear" ng-change="updatePeriod(selectedProject)"
+															ng-model="selectedProject">
+												<option value="">-- Select project --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Period</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="period for period in projectPeriod" ng-model="selectedPeriod">
+												<option value="">-- Select period --</option>
+											</select>
+										</div>
+										<label class="col-sm-1 control-label">Select Month</label>
+										<div class="col-sm-2">
+											<select class="form-control" ng-options="key as month for (key, month) in months" ng-model="selectedMonth">
+												<option value="">-- Select Month --</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<button ng-click="updateForecastData(selectedProject, selectedPeriod, selectedMonth)" ng-disabled="!selectedPeriod || !selectedProject || !selectedMonth" class="btn btn-primary-alt"><i class="ti ti-notepad"></i> Show Fields</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-inverse" ng-if="!forecastBoxShow" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+				Please select above filter to add forecast
+				<button type="button" class="close" data-dismiss="alert">×</button>
+			</div>
+			<div data-widget-group="group1" class="ui-sortable" ng-if="forecastBoxShow">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" data-widget="{'draggable': 'false'}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+							<form name="hotel_forecast" ng-submit="saveView()">
+								<div class="panel-heading">
+									<h2>View Hotel Forecast</h2>
+									<!--<div class="panel-ctrls">
+										<div class="DTTT btn-group pull-left mt-sm">
+											<button class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0" type="submit" ng-disabled="hotel_Forecast.$invalid"
+															ng-if="hotelRoles.isOperator"><i class="ti ti-plus"></i> <span>Save</span></button>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_1" ng-click="editView()"><i class="ti ti-pencil"></i> <span>Edit</span></a>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_2" ng-click="submitBudget()" ng-if="hotelRoles.isOperator"><i class="ti ti-upload"></i> <span>Submit</span></a>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_2" ng-click="approveBudget()" ng-if="hotelRoles.isController"><i class="ti ti-check-box"></i> <span>Approve</span></a>
+											<a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_2" ng-click="rejectBudget()" ng-if="hotelRoles.isController"><i class="ti ti-close"></i> <span>Reject</span></a>
+										</div>
+									</div>-->
+								</div>
+								<div class="panel-body" style="display: block;">
+									<div class="table-responsive table-bordered">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th style="padding-right:10px; min-width:195px;">Forecast Data Entry (by Days)</th>
+													<th ng-repeat="(key,val) in daysInMonthList">{{val}}</th>
+													<th>Total</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="forecast in forecastData">
+													<td align="left"><i>{{forecast.fieldName}}</i></td>
+													<td ng-repeat="(key,val) in daysInMonthList" ng-bind="forecast[val]">{{forecast[val]}}</td>
+													<td>{{forecast.total}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--comment Box -->
+<div class="modal fade" id="comment-modal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form name="rejectComment" class="form-horizontal" ng-submit="rejectForecastSubmit()">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h2 class="modal-title">Reject Comment</h2>
+				</div>
+				<div class="modal-body">
+					<div class="form-group" ng-class="{'has-error' : !rejectComment.comment.$valid}">
+						<div class="col-sm-12">
+							<textarea name="comment" placeholder="Please enter your comment.."  cols="50" rows="4" class="form-control" ng-model="rejectCommentText" required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button class="btn btn-primary" ng-disabled="rejectComment.$invalid">Save changes</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
